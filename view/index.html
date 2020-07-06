@@ -1,21 +1,53 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <!--Define title-->
-        <title>List View App</title>
-        
-        <!--You can load all the css files here -->
-        <link rel="stylesheet" type="text/css" href="css/style.css">
-    </head>
-    
-    <body>
-        <!--HTML content goes here-->
-         <ul id="list">
-         </ul>
-         <input id="input" type="text"></input>
-         <button id="button">Insert</button>
-        
-        <!--You can load all the javascript files here-->
-        <script type="text/javascript" src="js/script.js"></script>
-    </body>
+<!doctype html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8">
+    <title>30 TON lista lista!</title>
+    <style type="text/css">
+        li:nth-child(3N+0) {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <form id="poleWpisu">
+            <div>
+                <input></input>
+                <button type="submit">Insert</button>
+            </div>
+        </form>
+        <ul style="position:relative; left: 50%;" id="lista"></ul>
+    </div>
+    <script>
+        let lista = null;
+        let poleWpisu = null;
+
+        function addTask(text) {
+            const tekst = document.createElement('li');
+            tekst.classList.add('JakisTekst');
+            tekst.innerText = text;
+            lista.append(tekst);
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            lista = document.querySelector('#lista');
+            poleWpisu = document.querySelector('#poleWpisu');
+
+            poleWpisu.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const input = this.querySelector('input');
+                if (input.value !== '') {
+                    addTask(input.value);
+                    input.value = '';
+                }
+                else {
+                    console.log(alert("Please provide the valid input"))
+                }
+            });
+        });
+    </script>
+</body>
+
 </html>
